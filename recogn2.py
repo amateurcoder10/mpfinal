@@ -1,3 +1,5 @@
+#testing program for face recognition
+
 #!/usr/bin/python
 
 # Import the required modules
@@ -12,6 +14,8 @@ faceCascade = cv2.CascadeClassifier(cascadePath)
 
 # For face recognition we will the the LBPH Face Recognizer 
 recognizer = cv2.face.createLBPHFaceRecognizer()
+
+#load the model
 recognizer.load('model.xml')
 
 path = './thirdeye'
@@ -19,10 +23,15 @@ path = './thirdeye'
 #image_paths = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.sad')]
 
 
-predict_image_pil = Image.open("neha.jpeg").convert('L')
+predict_image_pil = Image.open("recog.jpeg").convert('L')
 predict_image = np.array(predict_image_pil, 'uint8')
+
+#detect faces
 faces = faceCascade.detectMultiScale(predict_image)
+
 #print(len(faces))
+
+#recognise faces
 for (x, y, w, h) in faces:
     print(w,h)
     if((h<200) | (w<200)):
