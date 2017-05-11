@@ -1,3 +1,4 @@
+#program that outputs two dominant colors in an image
 from PIL import Image
 import scipy
 import scipy.cluster
@@ -26,6 +27,7 @@ def speak(audioString):
     """
     os.system("mpg321 output.mp3 -quiet")
 
+#if color is not found in webcolors the closest approximation to it is used
 def closest_colour(requested_colour):
     min_colours = {}
     for key, name in webcolors.css3_hex_to_names.items():
@@ -98,7 +100,7 @@ peak = codes[index_max]
 
 color = rgb2hex(peak/255)
 
-
+#primary color
 try:
 	c=webcolors.rgb_to_name(peak)
 	print("Dominant Color is : ")
@@ -114,7 +116,7 @@ except ValueError:
 	speak('The Dominant color is ')
 	speak(closest_name)
 	
-
+#secondary color
 # Find the most frequent color, based on the counts.
 counts=numpy.delete(counts,index_max)
 codes=numpy.delete(codes,index_max,0)
