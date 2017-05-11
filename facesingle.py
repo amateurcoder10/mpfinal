@@ -1,3 +1,5 @@
+#training program for the face recognition module based on lbp
+
 #!/usr/bin/python
 
 # Import the required modules
@@ -64,6 +66,7 @@ cv2.destroyAllWindows()
 # Perform the tranining
 recognizer.train(images, np.array(labels))
 
+#save the model in an xml file
 f=open('model.xml','w')
 recognizer.save('model.xml')
 
