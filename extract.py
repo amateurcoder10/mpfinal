@@ -1,4 +1,4 @@
-#Tesseract works best on images which have a DPI of at least 300 dpi, so it may be beneficial to resize images.
+#OCR Tesseract program that works on pre-processed images.
 
 from PIL import Image
 import sys
@@ -7,6 +7,7 @@ import pygame
 from gtts import gTTS
 import os
 
+#audio output
 def speak(audioString):
     print(audioString)
     tts = gTTS(text=audioString, lang='en')
@@ -15,6 +16,7 @@ def speak(audioString):
     
 #out=[]    
 
+#extract text
 if len(sys.argv) != 2:
     print ("%s input_file output_file" % (sys.argv[0]))
     sys.exit()
