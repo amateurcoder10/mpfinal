@@ -1,3 +1,4 @@
+#program that detects the number of people in a picture based on face detection
 import numpy as np
 import cv2
 import math
@@ -5,10 +6,12 @@ from PIL import Image
 import os, os.path
 from gtts import gTTS
 
+#load haar cascades
 face_cascade = cv2.CascadeClassifier('/home/pi/opencv/data/haarcascades/haarcascade_frontalface_default.xml')
 
 eye_cascade = cv2.CascadeClassifier('/home/pi/opencv/data/haarcascades/haarcascade_eye.xml')
 
+#audio outputs
 def speak(audioString):
     print(audioString)
 
@@ -31,6 +34,7 @@ print(len(imgs))
 
 for img in imgs:
 """
+#detect faces on an input image and print no of people
 img = cv2.imread('people.jpeg')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 faces = face_cascade.detectMultiScale(gray, 1.3, 5)
