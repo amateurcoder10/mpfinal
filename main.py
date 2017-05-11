@@ -1,3 +1,5 @@
+#This is the main program for third eye.It loops continuously looking for voice input and calls the corresponding program according to the utter phrases.
+
 import speech_recognition as sr
 from time import ctime
 import time
@@ -13,7 +15,7 @@ old=sys.stdout
 f=open(os.devnull,'w')
 sys.stderr=f
 
-
+#voice output function
 def speak(audioString):
     print(audioString)
 
@@ -26,7 +28,7 @@ def speak(audioString):
     while pygame.mixer.music.get_busy() == True:
         continue
 
-	    
+#function that listens	    
 def recordAudio():
 #    sys.stdout=old
     # Record Audio
@@ -70,7 +72,7 @@ def listen():
 
 	return " "
 '''
-
+#function that processes speech
 def jarvis(data):
 
     if ("how are you" in data):
@@ -85,35 +87,36 @@ def jarvis(data):
         speak("Hold on, I will show you where " + location + " is.")
         os.system("chromium-browser https://www.google.nl/maps/place/" + location + "/&amp;")
 
-    if ("take a picture" in data) or ("picture" in data):
+    if ("take a picture" in data) or ("picture" in data):#utter phrase to take a picture
         speak("Point  your camera")
         os.system("fswebcam -r 160x120 --no-banner image.jpeg")#("fswebcam -r 160x120 --no-banner image.jpeg")
 
-    if ("colour" in data) or ("color" in data) or ("what is my dress colour" in data):
+    if ("colour" in data) or ("color" in data) or ("what is my dress colour" in data):#utter phrase for color
         speak("Point  your camera")
         os.system("fswebcam -r 160x120 --no-banner image.jpeg")
         speak("Give me a second.. will tell u the color")
         os.system("python color.py image.jpeg")
-    
+	
+    #utter phrase for pattern
     if ("pattern" in data) or ("patan" in data)or("Patan" in data)  or ("pattern of dress" in data) or ("titan" in data) or ("cartoon" in data) or ("what is my dress pattern" in data):
         speak("Point  your camera")
         os.system("fswebcam -r 160x120 --no-banner image.jpeg")
         speak("Give me a second.. will tell u the pattern")
         os.system("python classifier.py -i image.jpeg")
 
-    if ("card" in data) or ("visiting card" in data) or ("business card" in data) or ("Read me the card" in data):
+    if ("card" in data) or ("visiting card" in data) or ("business card" in data) or ("Read me the card" in data):#cards
         speak("Point  your camera")
         os.system("fswebcam -r 1020x720 --no-banner image.jpg")#"fswebcam -r 1020x720 --no-banner image.jpeg")
         speak("Give me a second.. will read out the card for you")
         os.system("python extract.py card1.jpg ")
 
-    if("who is it" in data) or ("friend" in data) or ("Who is this" in data) or ("face" in data) :
+    if("who is it" in data) or ("friend" in data) or ("Who is this" in data) or ("face" in data) :#friend or foe
         speak("Point  your camera")
         os.system("fswebcam -r 1020x720 --no-banner face.jpg")
         speak("Give me a second..I will tell you if it is a friend")
         os.system("python recogn2.py")
 
-    if("how many" in data) or ("people" in data) or ("number of people" in data) or ("tell me the count" in data):
+    if("how many" in data) or ("people" in data) or ("number of people" in data) or ("tell me the count" in data):#no of people
         speak("Point  your camera")
         os.system("fswebcam -r 1020x720 --no-banner people.jpeg")
         speak("Give me a second..I will tell you the number of people")
@@ -126,6 +129,7 @@ def jarvis(data):
         #os.system("exit(0)")
 
 # initialization
+#main part that coninuously listens for input
 time.sleep(2)
 speak("Hello, This is 'Third Eye'. What can I do for you?")
 #engine.runAndWait()
