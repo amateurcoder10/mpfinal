@@ -1,3 +1,5 @@
+#training program for pattern recognition
+
 import argparse as ap
 # Importing library that supports user friendly commandline interfaces
 import cv2
