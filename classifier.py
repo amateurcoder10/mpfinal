@@ -1,3 +1,4 @@
+#classifier program for pattern
 import argparse as ap
 # Importing library that supports user friendly commandline interfaces
 import cv2
